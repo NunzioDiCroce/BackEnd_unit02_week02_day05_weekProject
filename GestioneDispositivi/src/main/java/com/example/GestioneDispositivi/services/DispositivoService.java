@@ -95,7 +95,11 @@ public class DispositivoService {
 			throw new IllegalStateException("Il dispositivo non è assegnato a nessun utente");
 		}
 
-		return dispositivoRepository.save(null);
+		if (dispositivo.getStatoDispositivo() != StatoDispositivo.ASSEGNATO) {
+			throw new IllegalStateException("Il dispositivo non è assegnato a nessun utente");
+		}
+
+		return dispositivoRepository.save(dispositivo);
 
 	}
 }
