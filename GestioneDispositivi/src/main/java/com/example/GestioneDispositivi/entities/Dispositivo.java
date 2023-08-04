@@ -1,5 +1,8 @@
 package com.example.GestioneDispositivi.entities;
 
+import com.example.GestioneDispositivi.enums.StatoDispositivo;
+import com.example.GestioneDispositivi.enums.TipoDispositivo;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
