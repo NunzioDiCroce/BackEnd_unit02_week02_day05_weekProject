@@ -87,8 +87,9 @@ public class DispositivoService {
 	}
 
 	// METODO RITIRA DISPOSITIVO
-	public Dispositivo ritiraDispositivo() {
-		return null;
+	public Dispositivo ritiraDispositivo(long dispositivoId, DispositivoPayloadAssegna body) {
+
+		return dispositivoRepository.save(null);
 
 	}
 }
