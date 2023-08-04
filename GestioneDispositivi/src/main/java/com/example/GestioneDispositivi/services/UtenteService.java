@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.GestioneDispositivi.entities.Utente;
+import com.example.GestioneDispositivi.exceptions.ItemNotFoundException;
 import com.example.GestioneDispositivi.repositories.UtenteRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,9 +23,9 @@ public class UtenteService {
 	}
 
 	// save utente
-	public void save(Utente _utente) {
-		utenteRepository.save(_utente);
-		log.info("Utente con ID " + _utente.getId() + " salvato con successo");
+	public void save(Utente utente) {
+		utenteRepository.save(utente);
+		log.info("Utente con ID " + utente.getId() + " salvato con successo");
 
 	}
 
@@ -38,10 +39,10 @@ public class UtenteService {
 		return utenteRepository.findAll();
 	}
 
-//	public Utente findById(long _id) throws ItemNotFoundException {
-//		return utenteRepository.findById(_id).orElseThrow(() -> new ItemNotFoundException(_id));
-//
-//	}
+	public Utente findById(long id) throws ItemNotFoundException {
+		return utenteRepository.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
+
+	}
 
 //	public Utente findByIdAndUpdate(long id, UtentePayload body) throws ItemNotFoundException {
 //		Utente found = this.findById(id);
@@ -53,9 +54,9 @@ public class UtenteService {
 //		return utenteRepository.save(found);
 //	}
 
-//	public void findByIdAndDelete(long id) throws ItemNotFoundException {
-//		Utente found = this.findById(id);
-//		utenteRepository.delete(found);
-//	}
+	public void findByIdAndDelete(long id) throws ItemNotFoundException {
+		Utente found = this.findById(id);
+		utenteRepository.delete(found);
+	}
 
 }
