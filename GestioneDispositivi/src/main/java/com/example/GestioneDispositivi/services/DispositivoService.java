@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.GestioneDispositivi.entities.Dispositivo;
+import com.example.GestioneDispositivi.entities.DispositivoPayload;
 import com.example.GestioneDispositivi.exceptions.ItemNotFoundException;
 import com.example.GestioneDispositivi.repositories.DispositivoRepository;
 
@@ -31,12 +32,11 @@ public class DispositivoService {
 
 	}
 
-//	// save by DispositivoPayload
-//	public Dispositivo save(DispositivoPayload body) {
-//		Dispositivo nuovoDispositivo = new Dispositivo(body.getDescrizione(), body.getTipoPostazione(),
-//				body.getNumeroMassimoOccupanti(), edificioService.findById(body.getEdificioId()));
-//		return dispositivoRepository.save(nuovoDispositivo);
-//	}
+	// save by DispositivoPayload
+	public Dispositivo save(DispositivoPayload body) {
+		Dispositivo nuovoDispositivo = new Dispositivo(body.getTipoDispositivo(), body.getStatoDispositivo());
+		return dispositivoRepository.save(nuovoDispositivo);
+	}
 
 	public List<Dispositivo> findAll() {
 		return dispositivoRepository.findAll();
@@ -47,13 +47,14 @@ public class DispositivoService {
 
 	}
 
-//	public Dispositivo findByIdAndUpdate(long id, DispositivoPayload body) throws ItemNotFoundException {
-//		Dispositivo found = this.findById(id);
-//
-//		found.setDescrizione(body.getDescrizione());
-//
-//		return dispositivoRepository.save(found);
-//	}
+	public Dispositivo findByIdAndUpdate(long id, DispositivoPayload body) throws ItemNotFoundException {
+		Dispositivo found = this.findById(id);
+
+		found.setTipoDispositivo(body.getTipoDispositivo());
+		found.setStatoDispositivo(body.getStatoDispositivo());
+
+		return dispositivoRepository.save(found);
+	}
 
 	public void findByIdAndDelete(long id) throws ItemNotFoundException {
 		Dispositivo found = this.findById(id);

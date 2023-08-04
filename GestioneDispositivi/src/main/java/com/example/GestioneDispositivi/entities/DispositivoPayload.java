@@ -20,6 +20,6 @@ public class DispositivoPayload {
 	@Enumerated(EnumType.STRING)
 	protected StatoDispositivo statoDispositivo;
 
-	protected long utenteId;
+//	protected long utenteId;
 
 }
