@@ -86,4 +86,9 @@ public class DispositivoService {
 
 	}
 
+	// METODO RITIRA DISPOSITIVO
+	public Dispositivo ritiraDispositivo() {
+		return null;
+
+	}
 }
