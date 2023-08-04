@@ -87,7 +87,13 @@ public class DispositivoService {
 	}
 
 	// METODO RITIRA DISPOSITIVO
-	public Dispositivo ritiraDispositivo(long dispositivoId, DispositivoPayloadAssegna body) {
+	public Dispositivo ritiraDispositivo(long dispositivoId, DispositivoPayloadAssegna body)
+			throws ItemNotFoundException, IllegalStateException {
+		Dispositivo dispositivo = this.findById(dispositivoId);
+
+		if (dispositivo.getUtente() == null) {
+			throw new IllegalStateException("Il dispositivo non è assegnato a nessun utente");
+		}
 
 		return dispositivoRepository.save(null);
 
