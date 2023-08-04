@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.GestioneDispositivi.entities.Dispositivo;
 import com.example.GestioneDispositivi.entities.DispositivoPayload;
-import com.example.GestioneDispositivi.entities.Utente;
 import com.example.GestioneDispositivi.enums.StatoDispositivo;
 import com.example.GestioneDispositivi.exceptions.ItemNotFoundException;
 import com.example.GestioneDispositivi.repositories.DispositivoRepository;
@@ -65,7 +64,7 @@ public class DispositivoService {
 	}
 
 	// METODO ASSEGNA DISPOSITIVO
-	public void assegnaDispositivo(long dispositivoId, long utenteId)
+	public Dispositivo assegnaDispositivo(long dispositivoId, DispositivoPayload body)
 			throws ItemNotFoundException, IllegalStateException {
 		Dispositivo dispositivo = this.findById(dispositivoId);
 
@@ -77,13 +76,7 @@ public class DispositivoService {
 			throw new IllegalStateException("Il dispositivo non è disponibile per l'assegnazione.");
 		}
 
-		Utente utente = utenteService.findById(utenteId);
-
-		dispositivo.setUtente(utente);
-		dispositivo.setStatoDispositivo(StatoDispositivo.ASSEGNATO);
-
-		dispositivoRepository.save(dispositivo);
-		log.info("Dispositivo con ID " + dispositivo.getId() + " assegnato all'utente con ID " + utente.getId());
+		return dispositivoRepository.save(dispositivo);
 
 	}
 
