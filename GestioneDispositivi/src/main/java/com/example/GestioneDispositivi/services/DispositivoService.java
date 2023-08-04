@@ -78,6 +78,13 @@ public class DispositivoService {
 		}
 
 		Utente utente = utenteService.findById(utenteId);
+
+		dispositivo.setUtente(utente);
+		dispositivo.setStatoDispositivo(StatoDispositivo.ASSEGNATO);
+
+		dispositivoRepository.save(dispositivo);
+		log.info("Dispositivo con ID " + dispositivo.getId() + " assegnato all'utente con ID " + utente.getId());
+
 	}
 
 }
