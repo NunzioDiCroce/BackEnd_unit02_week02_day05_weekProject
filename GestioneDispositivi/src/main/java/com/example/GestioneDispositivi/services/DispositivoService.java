@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.GestioneDispositivi.entities.Dispositivo;
 import com.example.GestioneDispositivi.entities.DispositivoPayload;
 import com.example.GestioneDispositivi.entities.DispositivoPayloadAssegna;
-import com.example.GestioneDispositivi.entities.DispositivoPayloadRimuovi;
+import com.example.GestioneDispositivi.entities.DispositivoPayloadRitira;
 import com.example.GestioneDispositivi.entities.Utente;
 import com.example.GestioneDispositivi.enums.StatoDispositivo;
 import com.example.GestioneDispositivi.exceptions.ItemNotFoundException;
@@ -88,7 +88,7 @@ public class DispositivoService {
 	}
 
 	// * * * * * * * * * * METODO RITIRA DISPOSITIVO
-	public Dispositivo ritiraDispositivo(long dispositivoId, DispositivoPayloadRimuovi body)
+	public Dispositivo ritiraDispositivo(long dispositivoId, DispositivoPayloadRitira body)
 			throws ItemNotFoundException, IllegalStateException {
 		Dispositivo dispositivo = this.findById(dispositivoId);
 

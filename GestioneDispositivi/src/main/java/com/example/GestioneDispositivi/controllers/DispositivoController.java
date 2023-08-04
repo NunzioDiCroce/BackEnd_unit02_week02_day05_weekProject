@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.GestioneDispositivi.entities.Dispositivo;
 import com.example.GestioneDispositivi.entities.DispositivoPayload;
 import com.example.GestioneDispositivi.entities.DispositivoPayloadAssegna;
-import com.example.GestioneDispositivi.entities.DispositivoPayloadRimuovi;
+import com.example.GestioneDispositivi.entities.DispositivoPayloadRitira;
 import com.example.GestioneDispositivi.services.DispositivoService;
 
 @RestController
@@ -67,8 +67,8 @@ public class DispositivoController {
 	}
 
 	// * * * * * * * * * * METODO RITIRA DISPOSITIVO
-	@PutMapping("/{deviceId}/ririra")
-	public Dispositivo retireDevice(@PathVariable long deviceId, @RequestBody DispositivoPayloadRimuovi body) {
+	@PutMapping("/{deviceId}/ritira")
+	public Dispositivo retireDevice(@PathVariable long deviceId, @RequestBody DispositivoPayloadRitira body) {
 		return dispositivoService.ritiraDispositivo(deviceId, body);
 	}
 }
