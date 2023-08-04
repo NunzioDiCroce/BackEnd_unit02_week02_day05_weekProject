@@ -9,4 +9,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UtentePayload {
 
+	protected String userName;
+	protected String nome;
+	protected String cognome;
+	protected String mail;
+
 }
