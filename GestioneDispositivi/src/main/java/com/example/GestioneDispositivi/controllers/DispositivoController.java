@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.GestioneDispositivi.entities.Dispositivo;
 import com.example.GestioneDispositivi.entities.DispositivoPayload;
+import com.example.GestioneDispositivi.entities.DispositivoPayloadAssegna;
 import com.example.GestioneDispositivi.services.DispositivoService;
 
 @RestController
@@ -58,4 +59,9 @@ public class DispositivoController {
 		dispositivoService.findByIdAndDelete(deviceId);
 	}
 
+	// METODO ASSEGNA DISPOSITIVO
+	@PutMapping("/{deviceId}/assegna")
+	public Dispositivo assignDevice(@PathVariable long deviceId, @RequestBody DispositivoPayloadAssegna body) {
+		return dispositivoService.assegnaDispositivo(deviceId, body);
+	}
 }
