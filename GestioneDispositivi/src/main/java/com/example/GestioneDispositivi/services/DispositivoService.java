@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.GestioneDispositivi.entities.Dispositivo;
+import com.example.GestioneDispositivi.exceptions.ItemNotFoundException;
 import com.example.GestioneDispositivi.repositories.DispositivoRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -41,10 +42,10 @@ public class DispositivoService {
 		return dispositivoRepository.findAll();
 	}
 
-//	public Dispositivo findById(long id) throws ItemNotFoundException {
-//		return dispositivoRepository.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
-//
-//	}
+	public Dispositivo findById(long id) throws ItemNotFoundException {
+		return dispositivoRepository.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
+
+	}
 
 //	public Dispositivo findByIdAndUpdate(long id, DispositivoPayload body) throws ItemNotFoundException {
 //		Dispositivo found = this.findById(id);
@@ -54,9 +55,9 @@ public class DispositivoService {
 //		return dispositivoRepository.save(found);
 //	}
 
-//	public void findByIdAndDelete(long id) throws ItemNotFoundException {
-//		Dispositivo found = this.findById(id);
-//		dispositivoRepository.delete(found);
-//	}
+	public void findByIdAndDelete(long id) throws ItemNotFoundException {
+		Dispositivo found = this.findById(id);
+		dispositivoRepository.delete(found);
+	}
 
 }
