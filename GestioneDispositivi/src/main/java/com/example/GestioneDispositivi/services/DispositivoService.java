@@ -99,6 +99,9 @@ public class DispositivoService {
 			throw new IllegalStateException("Il dispositivo non è assegnato a nessun utente");
 		}
 
+		dispositivo.setUtente(null);
+		dispositivo.setStatoDispositivo(StatoDispositivo.DISPONIBILE);
+
 		return dispositivoRepository.save(dispositivo);
 
 	}
