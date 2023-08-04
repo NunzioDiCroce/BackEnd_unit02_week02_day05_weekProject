@@ -7,11 +7,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.GestioneDispositivi.entities.Utente;
+import com.example.GestioneDispositivi.entities.UtentePayload;
 import com.example.GestioneDispositivi.services.UtenteService;
 
 @RestController
@@ -21,12 +25,12 @@ public class UtenteController {
 	@Autowired
 	private UtenteService utenteService;
 
-//	@PostMapping
-//	@ResponseStatus(HttpStatus.CREATED)
-//	public Utente saveUser(@RequestBody UtentePayload body) {
-//		Utente created = utenteService.save(body);
-//		return created;
-//	}
+	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
+	public Utente saveUser(@RequestBody UtentePayload body) {
+		Utente created = utenteService.save(body);
+		return created;
+	}
 
 	@GetMapping("")
 	public List<Utente> getUsers() {
@@ -39,10 +43,10 @@ public class UtenteController {
 
 	}
 
-//	@PutMapping("/{userId}")
-//	public Utente updateUser(@PathVariable long userId, @RequestBody UtentePayload body) {
-//		return utenteService.findByIdAndUpdate(userId, body);
-//	}
+	@PutMapping("/{userId}")
+	public Utente updateUser(@PathVariable long userId, @RequestBody UtentePayload body) {
+		return utenteService.findByIdAndUpdate(userId, body);
+	}
 
 	@DeleteMapping("/{userId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)

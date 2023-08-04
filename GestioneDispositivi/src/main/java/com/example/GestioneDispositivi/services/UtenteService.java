@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.GestioneDispositivi.entities.Utente;
+import com.example.GestioneDispositivi.entities.UtentePayload;
 import com.example.GestioneDispositivi.exceptions.ItemNotFoundException;
 import com.example.GestioneDispositivi.repositories.UtenteRepository;
 
@@ -29,11 +30,11 @@ public class UtenteService {
 
 	}
 
-//	// save by UtentePayload
-//	public Utente save(UtentePayload body) {
-//		Utente nuovoUtente = new Utente(body.getUserName(), body.getNome(), body.getMail());
-//		return utenteRepository.save(nuovoUtente);
-//	}
+	// save by UtentePayload
+	public Utente save(UtentePayload body) {
+		Utente nuovoUtente = new Utente(body.getUserName(), body.getNome(), body.getCognome(), body.getMail());
+		return utenteRepository.save(nuovoUtente);
+	}
 
 	public List<Utente> findAll() {
 		return utenteRepository.findAll();
@@ -44,15 +45,16 @@ public class UtenteService {
 
 	}
 
-//	public Utente findByIdAndUpdate(long id, UtentePayload body) throws ItemNotFoundException {
-//		Utente found = this.findById(id);
-//
-//		found.setUserName(body.getUserName());
-//		found.setNome(body.getNome());
-//		found.setMail(body.getMail());
-//
-//		return utenteRepository.save(found);
-//	}
+	public Utente findByIdAndUpdate(long id, UtentePayload body) throws ItemNotFoundException {
+		Utente found = this.findById(id);
+
+		found.setUserName(body.getUserName());
+		found.setNome(body.getNome());
+		found.setCognome(body.getCognome());
+		found.setMail(body.getMail());
+
+		return utenteRepository.save(found);
+	}
 
 	public void findByIdAndDelete(long id) throws ItemNotFoundException {
 		Utente found = this.findById(id);
