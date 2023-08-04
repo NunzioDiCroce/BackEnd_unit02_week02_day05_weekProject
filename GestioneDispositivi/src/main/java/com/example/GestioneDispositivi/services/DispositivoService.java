@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.GestioneDispositivi.entities.Dispositivo;
 import com.example.GestioneDispositivi.entities.DispositivoPayload;
+import com.example.GestioneDispositivi.entities.Utente;
 import com.example.GestioneDispositivi.enums.StatoDispositivo;
 import com.example.GestioneDispositivi.exceptions.ItemNotFoundException;
 import com.example.GestioneDispositivi.repositories.DispositivoRepository;
@@ -19,11 +20,12 @@ public class DispositivoService {
 
 	private final DispositivoRepository dispositivoRepository;
 
-//	private final UtenteService utenteService;
+	private final UtenteService utenteService;
 
 	@Autowired
-	public DispositivoService(DispositivoRepository dispositivoRepository) {
+	public DispositivoService(DispositivoRepository dispositivoRepository, UtenteService utenteService) {
 		this.dispositivoRepository = dispositivoRepository;
+		this.utenteService = utenteService;
 	}
 
 	// save dispositivo
@@ -68,12 +70,14 @@ public class DispositivoService {
 		Dispositivo dispositivo = this.findById(dispositivoId);
 
 		if (dispositivo.getUtente() != null) {
-
+			throw new IllegalStateException("Il dispositivo è già assegnato ad un utente.");
 		}
 
 		if (dispositivo.getStatoDispositivo() != StatoDispositivo.DISPONIBILE) {
-
+			throw new IllegalStateException("Il dispositivo non è disponibile per l'assegnazione.");
 		}
+
+		Utente utente = utenteService.findById(utenteId);
 	}
 
 }
