@@ -5,10 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.GestioneDispositivi.entities.Dispositivo;
 import com.example.GestioneDispositivi.repositories.DispositivoRepository;
-import com.example.GestionePrenotazioniWS.entities.Postazione;
-import com.example.GestionePrenotazioniWS.entities.PostazionePayload;
-import com.example.GestionePrenotazioniWS.exceptions.ItemNotFoundException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,43 +23,40 @@ public class DispositivoService {
 		this.dispositivoRepository = dispositivoRepository;
 	}
 
-	// save postazione
-	public void save(Postazione _postazione) {
-		postazioneRepository.save(_postazione);
-		log.info("Postazione con ID " + _postazione.getId() + " salvata con successo");
+	// save dispositivo
+	public void save(Dispositivo dispositivo) {
+		dispositivoRepository.save(dispositivo);
+		log.info("Dispositivo con ID " + dispositivo.getId() + " salvato con successo");
 
 	}
 
-	// save by PostazionePayload
-	public Postazione save(PostazionePayload body) {
-		Postazione nuovaPostazione = new Postazione(body.getDescrizione(), body.getTipoPostazione(),
-				body.getNumeroMassimoOccupanti(), edificioService.findById(body.getEdificioId()));
-		return postazioneRepository.save(nuovaPostazione);
+//	// save by DispositivoPayload
+//	public Dispositivo save(DispositivoPayload body) {
+//		Dispositivo nuovoDispositivo = new Dispositivo(body.getDescrizione(), body.getTipoPostazione(),
+//				body.getNumeroMassimoOccupanti(), edificioService.findById(body.getEdificioId()));
+//		return dispositivoRepository.save(nuovoDispositivo);
+//	}
+
+	public List<Dispositivo> findAll() {
+		return dispositivoRepository.findAll();
 	}
 
-	public List<Postazione> findAll() {
-		return postazioneRepository.findAll();
-	}
+//	public Dispositivo findById(long id) throws ItemNotFoundException {
+//		return dispositivoRepository.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
+//
+//	}
 
-	public Postazione findById(long _id) throws ItemNotFoundException {
-		return postazioneRepository.findById(_id).orElseThrow(() -> new ItemNotFoundException(_id));
+//	public Dispositivo findByIdAndUpdate(long id, DispositivoPayload body) throws ItemNotFoundException {
+//		Dispositivo found = this.findById(id);
+//
+//		found.setDescrizione(body.getDescrizione());
+//
+//		return dispositivoRepository.save(found);
+//	}
 
-	}
-
-	public Postazione findByIdAndUpdate(long id, PostazionePayload body) throws ItemNotFoundException {
-		Postazione found = this.findById(id);
-
-		found.setDescrizione(body.getDescrizione());
-		found.setTipoPostazione(body.getTipoPostazione());
-		found.setNumeroMassimoOccupanti(body.getNumeroMassimoOccupanti());
-		found.setEdificio(edificioService.findById(body.getEdificioId()));
-
-		return postazioneRepository.save(found);
-	}
-
-	public void findByIdAndDelete(long id) throws ItemNotFoundException {
-		Postazione found = this.findById(id);
-		postazioneRepository.delete(found);
-	}
+//	public void findByIdAndDelete(long id) throws ItemNotFoundException {
+//		Dispositivo found = this.findById(id);
+//		dispositivoRepository.delete(found);
+//	}
 
 }
