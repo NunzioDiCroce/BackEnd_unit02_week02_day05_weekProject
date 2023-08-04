@@ -14,8 +14,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UtenteService {
 
+	private final UtenteRepository utenteRepository;
+
 	@Autowired
-	private UtenteRepository utenteRepository;
+	public UtenteService(UtenteRepository utenteRepository) {
+		this.utenteRepository = utenteRepository;
+	}
 
 	// save utente
 	public void save(Utente _utente) {
