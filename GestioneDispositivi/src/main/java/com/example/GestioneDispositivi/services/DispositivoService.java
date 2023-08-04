@@ -66,7 +66,7 @@ public class DispositivoService {
 		dispositivoRepository.delete(found);
 	}
 
-	// METODO ASSEGNA DISPOSITIVO
+	// * * * * * * * * * * METODO ASSEGNA DISPOSITIVO
 	public Dispositivo assegnaDispositivo(long dispositivoId, DispositivoPayloadAssegna body)
 			throws ItemNotFoundException, IllegalStateException {
 		Dispositivo dispositivo = this.findById(dispositivoId);
@@ -87,7 +87,7 @@ public class DispositivoService {
 
 	}
 
-	// METODO RITIRA DISPOSITIVO
+	// * * * * * * * * * * METODO RITIRA DISPOSITIVO
 	public Dispositivo ritiraDispositivo(long dispositivoId, DispositivoPayloadRimuovi body)
 			throws ItemNotFoundException, IllegalStateException {
 		Dispositivo dispositivo = this.findById(dispositivoId);
